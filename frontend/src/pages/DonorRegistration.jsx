@@ -16,7 +16,6 @@ function DonorRegistration() {
     e.preventDefault();
     setMessage("");
 
-    // Phone number validation
     if (!/^[6-9]\d{9}$/.test(phone)) {
       setMessage("Please enter a valid 10-digit Indian mobile number.");
       return;
@@ -26,7 +25,7 @@ function DonorRegistration() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/donors/register",
+        "https://blood-donor-connect-lynp.onrender.com/api/donors/register",
         {
           method: "POST",
           headers: {

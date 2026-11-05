@@ -17,7 +17,7 @@ function ViewRequests() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/blood-requests"
+        "https://blood-donor-connect-lynp.onrender.com/api/blood-requests"
       );
 
       const data = await response.json();
@@ -39,7 +39,7 @@ function ViewRequests() {
   async function updateStatus(id, status) {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/blood-requests/${id}`,
+        `https://blood-donor-connect-lynp.onrender.com/api/blood-requests/${id}`,
         {
           method: "PUT",
           headers: {
@@ -73,7 +73,7 @@ function ViewRequests() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/blood-requests/${id}`,
+        `https://blood-donor-connect-lynp.onrender.com/api/blood-requests/${id}`,
         {
           method: "DELETE",
         }

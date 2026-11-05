@@ -32,7 +32,7 @@ function Signup({ onSignup }) {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/signup",
+        "https://blood-donor-connect-lynp.onrender.com/api/auth/signup",
         {
           method: "POST",
           headers: {

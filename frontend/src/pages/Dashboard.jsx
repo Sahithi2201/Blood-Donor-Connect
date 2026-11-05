@@ -17,8 +17,8 @@ function Dashboard() {
       setError("");
 
       const [donorResponse, requestResponse] = await Promise.all([
-        fetch("http://localhost:5000/api/donors"),
-        fetch("http://localhost:5000/api/blood-requests")
+        fetch("https://blood-donor-connect-lynp.onrender.com/api/donors"),
+        fetch("https://blood-donor-connect-lynp.onrender.com/api/blood-requests")
       ]);
 
       const donorData = await donorResponse.json();

@@ -17,41 +17,22 @@ function BloodRequest() {
   const [error, setError] = useState("");
 
   function handleChange(e) {
-    const { name, value } = e.target;
-
-    if (name === "phone") {
-      setFormData({
-        ...formData,
-        phone: value.replace(/\D/g, "").slice(0, 10),
-      });
-      return;
-    }
-
     setFormData({
       ...formData,
-      [name]: value,
+      [e.target.name]: e.target.value,
     });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    setLoading(true);
     setMessage("");
     setError("");
 
-    // Phone number validation
-    if (!/^[6-9]\d{9}$/.test(formData.phone)) {
-      setError(
-        "Please enter a valid 10-digit Indian mobile number."
-      );
-      return;
-    }
-
-    setLoading(true);
-
     try {
       const response = await fetch(
-        "http://localhost:5000/api/blood-requests",
+        "https://blood-donor-connect-lynp.onrender.com/api/blood-requests",
         {
           method: "POST",
           headers: {
@@ -72,9 +53,7 @@ function BloodRequest() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.message || "Unable to submit request"
-        );
+        throw new Error(data.message || "Unable to submit request");
       }
 
       setMessage("Blood request submitted successfully!");
@@ -101,13 +80,8 @@ function BloodRequest() {
       <h1>🩸 Request Blood</h1>
       <p>Submit your blood requirement details.</p>
 
-      {message && (
-        <p style={{ color: "green" }}>{message}</p>
-      )}
-
-      {error && (
-        <p style={{ color: "red" }}>{error}</p>
-      )}
+      {message && <p style={{ color: "green" }}>{message}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
         <input
@@ -163,12 +137,9 @@ function BloodRequest() {
         <input
           type="tel"
           name="phone"
-          placeholder="Enter 10-digit mobile number"
+          placeholder="Contact Number"
           value={formData.phone}
           onChange={handleChange}
-          maxLength="10"
-          pattern="[6-9][0-9]{9}"
-          title="Enter a valid 10-digit Indian mobile number"
           required
         />
 
